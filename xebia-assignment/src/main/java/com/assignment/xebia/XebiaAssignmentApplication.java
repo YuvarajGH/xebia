@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 public class XebiaAssignmentApplication{
 	
 	public static void main(String[] args) {
-		SpringApplication.run(XebiaAssignmentApplication.class, args);
+		SpringApplication.run(XebiaAssignmentApplication.class, args); 
 	}
 	
 }
