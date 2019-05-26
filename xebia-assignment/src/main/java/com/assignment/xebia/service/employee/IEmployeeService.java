@@ -4,9 +4,23 @@ import java.util.List;
 
 import com.assignment.xebia.model.Employee;
 
+/**
+ * 
+ * @author YU296490
+ * Contains method declarations for Employee service operations 
+ */
 public interface IEmployeeService {
 	
-	 boolean register(Employee employee);
+	/**
+	 * @param employee 
+	 * @return boolean
+	 * Creates new user 
+	 */
+	 boolean registerEmployee(Employee employee);
 	 
-	 List<Employee> getAll();
+	 /**
+	  * @return List<Employee>
+	  * Fetches all users 
+	  */
+	 List<Employee> getAllEmployees();
 }

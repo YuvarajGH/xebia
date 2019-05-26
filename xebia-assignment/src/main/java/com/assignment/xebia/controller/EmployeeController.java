@@ -16,10 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.assignment.xebia.model.Employee;
 import com.assignment.xebia.service.employee.IEmployeeService;
 
+/**
+ * 
+ * @author YU296490
+ *	Handles all http requests for Employee management operations
+ */
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -30,38 +36,36 @@ public class EmployeeController {
 	
 	
 	@GetMapping({"/", "/page/register"})
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("registration", "active");
 		return "registration";
 	}
 	
 	
 	@GetMapping("/page/list")
-	public String listEmployee() {
+	public String listEmployee(Model model) {
+		model.addAttribute("view", "active");
 		return "employee-list";
 	}
 	
 	
 	@PostMapping(path="/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public String register(@Valid Employee employee, BindingResult result, Model model) {
-		System.out.println("Here");
+	public String register(@Valid Employee employee, BindingResult result, RedirectAttributes redirectAttrs) {
+		
 		if(result.hasErrors()) {
-			System.out.println(result.getFieldErrors());
-			model.addAttribute("message", "Unable to Register");
+			redirectAttrs.addFlashAttribute("error", "Unable to Register");
 		}else {
-			employeeService.register(employee);
-			model.addAttribute("message", "Registration successful");
+			employeeService.registerEmployee(employee);
+			redirectAttrs.addFlashAttribute("success", "Registration successful");
 		}
 		
-		return "registration"; 
+		return "redirect:/employee/page/register"; 
 	}
 	
 
 	@GetMapping("/list")
 	public @ResponseBody List<Employee> list() {
-		return employeeService.getAll();
+		return employeeService.getAllEmployees();
 	}
-	
-	
-	
 	
 }

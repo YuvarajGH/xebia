@@ -17,12 +17,12 @@ public class EmployeeDAO implements IEmployeeDAO {
 			
 	
 	@Override
-	public boolean register(Employee employee) {
+	public boolean registerEmployee(Employee employee) {
 		return EMPLOYEE_STORE.add(employee);
 	}
 
 	@Override
-	public List<Employee> getAll() {
+	public List<Employee> getAllEmployees() {
 		Collections.sort(EMPLOYEE_STORE);
 		return EMPLOYEE_STORE;
 	}

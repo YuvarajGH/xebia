@@ -17,13 +17,13 @@ public class EmployeeService implements IEmployeeService {
 	
 	
 	@Override
-	public boolean register(Employee employee) {
-		return employeeDAO.register(employee);
+	public boolean registerEmployee(Employee employee) {
+		return employeeDAO.registerEmployee(employee);
 	}
 
 	@Override
-	public List<Employee> getAll() {
-		return employeeDAO.getAll();
+	public List<Employee> getAllEmployees() {
+		return employeeDAO.getAllEmployees();
 	}
 
 }

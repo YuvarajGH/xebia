@@ -2,6 +2,7 @@ package com.assignment.xebia.model;
 
 import java.util.Date;
 
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.assignment.xebia.constants.Department;
 import com.assignment.xebia.constants.Gender;
+
+/**
+ * 
+ * @author YU296490
+ * Employee entity
+ */
 
 public class Employee implements Comparable<Employee>{
 	
@@ -36,6 +43,15 @@ public class Employee implements Comparable<Employee>{
 	@NotNull(message="department field is mandatory")
 	@Enumerated(EnumType.STRING)
 	private Department department;
+	
+	
+	public Employee(String firstName, String lastName, Gender gender, Date dob, Department department) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.dob = dob;
+		this.department = department;
+	}
 	
 	
 	public String getFirstName() {
@@ -80,7 +96,7 @@ public class Employee implements Comparable<Employee>{
 
 	@Override
 	public int compareTo(Employee arg0) {
-		return this.firstName.compareTo(arg0.firstName);
+		return this.firstName.compareToIgnoreCase(arg0.firstName);
 	}
 	
 	public String toString() {

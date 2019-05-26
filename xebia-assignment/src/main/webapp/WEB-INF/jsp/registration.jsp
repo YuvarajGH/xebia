@@ -4,54 +4,79 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900&display=swap" rel="stylesheet">
 <title>Register Employee</title>
 
 
 <style type="text/css">
 	
 	body{
-		font-family: Roboto;
+		font-family: Muli;
+		font-size: 14px;
 	}
+	
+	header{
+		height: 200px;
+    	background: #08b1a1;
+	}
+	
 	
 	.form-center{
 		max-width: 500px;
 		margin: auto;
+		margin-top: -100px;
+    	background: white;
+    	padding: 20px;
+    	border: 1px solid #eaeaea;
+    	border-radius: 5px;
+    	overflow: auto;
 	}
 	
 	.form-header{
-		margin-top: 30px;
+		font-size: 25px;
 	}
+		
+	.form-center label{
+		font-weight: 600;
+		color: #696868;
+	}
+	
+	.message{
+		font-size: 13px;
+    	font-weight: 600;
+    	line-height: 30px;
+	}
+	.success{
+		color: green;
+	}
+	
+	.error{
+		color: red;
+	}
+	
 </style>
 
 </head>
 
 
 <body>
-	<header>	
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		  <div class="container collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-		    <div class="navbar-nav navbar-right">
-		      <a class="nav-item nav-link active" href="#">Register</a>
-		      <a class="nav-item nav-link" href="#">View All</a>
-		    </div>
-		  </div>
-		</nav>
-	</header>
+	<%@include file="header.jsp"%>
 	<section class="container">
 	
 		<div class="form-center">
 			<h2 class="form-header">Register Employee</h2>
 			<br>
-			<form action="${pageContext.request.contextPath}/employee/register" method="POST" >
+			<form action="${pageContext.request.contextPath}/employee/register" method="POST" id="registration-form">
 			  <div class="form-group">
 			    <label for="firstName">First Name</label>
-			    <input name="firstName" type="text" class="form-control" required >
+			    <input maxlength="50" minlength="3" name="firstName" type="text" class="form-control" required >
 			  </div>
 			  <div class="form-group">
 			    <label for="lastName">Last Name</label>
-			    <input name="lastName" type="text" class="form-control" required >
+			    <input maxlength="50" minlength="3" name="lastName" type="text" class="form-control" required >
 			  </div>
 			  <div class="form-group">
 			    <label for="dob">Date of Birth</label>
@@ -67,7 +92,7 @@
 			    </select>
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleFormControlSelect2">Gender</label>
+			    <label for="department">Department</label>
 			    <select name=department class="form-control" required >
 			      <option disabled selected value="" >Select Department</option>
 			      <option value="IT">OPERATIONS</option>
@@ -78,10 +103,29 @@
 			      
 			    </select>	
 			  </div>
-			  <span class="float-left" >${message}</span>
-			  <button type="submit" class="btn btn-primary float-right">Submit</button>
+			  <span class="float-left message success" >${success}</span>
+			  <span class="float-left message error" >${error}</span>
+			  <button type="submit" class="btn btn-primary float-right" style="margin-left:10px;">Submit</button>
+			  <button type="button" class="btn btn-primary float-right"  onclick="resetForm()" >Reset</button>
 			</form>
 		</div>
 	</section>
+	
+	<script type="text/javascript">
+	function resetForm(){
+		document.getElementById('registration-form').reset();
+	}
+	
+	document.querySelectorAll("input, select").forEach(function(input){
+		input.onfocus = function(){
+			var messages = document.getElementsByClassName('message'); 
+			messages[0].innerHTML = '';
+			messages[1].innerHTML = '';
+		}
+	});
+	
+	</script>
 </body>
+
+
 </html>
