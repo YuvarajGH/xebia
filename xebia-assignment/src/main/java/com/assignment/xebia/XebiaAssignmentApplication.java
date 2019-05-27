@@ -13,38 +13,36 @@ import com.assignment.xebia.constants.Department;
 import com.assignment.xebia.constants.Gender;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-public class XebiaAssignmentApplication{
-	
+@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class,
+		DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
+public class XebiaAssignmentApplication {
+
 	public static void main(String[] args) {
-		SpringApplication.run(XebiaAssignmentApplication.class, args); 
+		SpringApplication.run(XebiaAssignmentApplication.class, args);
 	}
-	
+
 }
 
- //CONVERTERS FOR ENUM
-
+// CONVERTERS FOR ENUM
 @Component
-class DepertmentEnumConverter implements Converter<String, Department>{
+class DepertmentEnumConverter implements Converter<String, Department> {
 	@Override
 	public Department convert(String arg0) {
 		try {
 			return Department.valueOf(arg0);
-	    }
-		catch(Exception e) {
+		} catch (Exception e) {
 			return null;
 		}
 	}
 }
 
 @Component
-class GenderEnumConverter implements Converter<String, Gender>{
+class GenderEnumConverter implements Converter<String, Gender> {
 	@Override
 	public Gender convert(String arg0) {
 		try {
 			return Gender.valueOf(arg0);
-	    }
-		catch(Exception e) {
+		} catch (Exception e) {
 			return null;
 		}
 	}

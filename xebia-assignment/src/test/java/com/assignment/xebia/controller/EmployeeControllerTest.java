@@ -33,78 +33,65 @@ import com.assignment.xebia.service.employee.EmployeeService;
 @WebMvcTest(value = EmployeeController.class, secure = false)
 
 public class EmployeeControllerTest {
-	
-	
+
 	@Autowired
 	private MockMvc mockMvc;
-	
-	
+
 	@MockBean
 	private BindingResult bindingResult;
 
-	
 	@MockBean
 	private EmployeeService employeeService;
-	
+
 	@Autowired
 	private WebApplicationContext wac;
-	
-	
+
 	Employee employee = new Employee("Yuvaraj", "GGG", Gender.MALE, new Date(), Department.BUSINESS);
-	
+
 	@Before
-	public void setup(){
+	public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
-	
 
 	@Test
 	public void employeeRegisterSuccess() throws Exception {
-		
-		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/employee/register")
-															  .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-															  .param("firstName", employee.getFirstName())
-															  .param("lastName", employee.getLastName())
-															  .param("dob", new SimpleDateFormat("yyyy-MM-dd").format(employee.getDob()))
-															  .param("department", String.valueOf(employee.getDepartment()))
-															  .param("gender", String.valueOf(employee.getGender()));
-															  
-			
 
-		mockMvc.perform(requestBuilder)
-			  .andExpect(redirectedUrl("/employee/page/register"))
-			  .andExpect(flash().attribute("success", "Registration successful")).andReturn();
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/employee/register")
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED).param("firstName", employee.getFirstName())
+				.param("lastName", employee.getLastName())
+				.param("dob", new SimpleDateFormat("yyyy-MM-dd").format(employee.getDob()))
+				.param("department", String.valueOf(employee.getDepartment()))
+				.param("gender", String.valueOf(employee.getGender()));
+
+		mockMvc.perform(requestBuilder).andExpect(redirectedUrl("/employee/page/register"))
+				.andExpect(flash().attribute("success", "Registration successful")).andReturn();
 	}
-	
+
 	@Test
 	public void employeeRegisterationFailureInvalidParameters() throws Exception {
-		
-		
-		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/employee/register")
-															  .contentType(MediaType.APPLICATION_FORM_URLENCODED);
-															  
 
-		mockMvc.perform(requestBuilder)
-			  .andExpect(redirectedUrl("/employee/page/register"))
-			  .andExpect(flash().attribute("org.springframework.validation.BindingResult.employee", hasToString(Matchers.containsString("firstName field is mandatory"))))
-			  .andExpect(flash().attribute("org.springframework.validation.BindingResult.employee", hasToString(Matchers.containsString("lastName field is mandatory"))))
-			  .andExpect(flash().attribute("org.springframework.validation.BindingResult.employee", hasToString(Matchers.containsString("dob field is mandatory"))))
-			  .andExpect(flash().attribute("org.springframework.validation.BindingResult.employee", hasToString(Matchers.containsString("gender field is missing or invalid"))))
-			  .andExpect(flash().attribute("org.springframework.validation.BindingResult.employee", hasToString(Matchers.containsString("department field is missing or invalid"))))
-			  .andReturn();
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/employee/register")
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+		mockMvc.perform(requestBuilder).andExpect(redirectedUrl("/employee/page/register"))
+				.andExpect(flash().attribute("org.springframework.validation.BindingResult.employee",
+						hasToString(Matchers.containsString("firstName field is mandatory"))))
+				.andExpect(flash().attribute("org.springframework.validation.BindingResult.employee",
+						hasToString(Matchers.containsString("lastName field is mandatory"))))
+				.andExpect(flash().attribute("org.springframework.validation.BindingResult.employee",
+						hasToString(Matchers.containsString("dob field is mandatory"))))
+				.andExpect(flash().attribute("org.springframework.validation.BindingResult.employee",
+						hasToString(Matchers.containsString("gender field is missing or invalid"))))
+				.andExpect(flash().attribute("org.springframework.validation.BindingResult.employee",
+						hasToString(Matchers.containsString("department field is missing or invalid"))))
+				.andReturn();
 	}
-	
+
 	@Test
-	public void employeeListSuccess() throws Exception{
-		
-		mockMvc.perform(MockMvcRequestBuilders.get("/employee/list"))
-				.andExpect(jsonPath("$").isArray());
-				/*.andExpect(jsonPath("$", hasToString(Matchers.containsString("Yuvaraj"))))
-				.andExpect(jsonPath("$", hasToString(Matchers.containsString("GGG"))));*/
-		
+	public void employeeListSuccess() throws Exception {
+
+		mockMvc.perform(MockMvcRequestBuilders.get("/employee/list")).andExpect(jsonPath("$").isArray());
+
 	}
-	
 
 }
