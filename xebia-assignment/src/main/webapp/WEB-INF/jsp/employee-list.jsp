@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900&display=swap" rel="stylesheet">
 
 <style type="text/css">
 	
 	body{
-		font-family: Muli;
+		font-family: 'Muli','Arial';
 		font-size: 14px;
 		background: #f7f7f7;
 	}
@@ -33,6 +33,7 @@
 	
 	.content-title{
 		margin: 30px auto;
+		font-size: 25px;
 	}
 	
 </style>
@@ -41,7 +42,7 @@
 <body>
 <%@include file="header.jsp"%>
 	<div class="container">
-		<h2 class="content-title" >Employee List</h2>
+		<h2 class="content-title" >Registered Employees</h2>
 		<div class="table-data">
 			<table class="table table-bordered table-striped">
 				<thead class="">
@@ -49,7 +50,7 @@
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Gender</th>
-						<th>Date of Birth</th>
+						<th>Date of Birth (mm/dd/yyyy)</th>
 						<th>Department</th>
 					</tr>
 				</thead>
@@ -60,7 +61,7 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.js" ></script>
 <script type="text/javascript">
 	var context = '${pageContext.request.contextPath}';
 	

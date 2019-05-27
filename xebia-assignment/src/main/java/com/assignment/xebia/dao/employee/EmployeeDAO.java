@@ -2,13 +2,17 @@ package com.assignment.xebia.dao.employee;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.assignment.xebia.model.Employee;
 
+/**
+ * 
+ * @author YU296490
+ * Does all DAO operations for Employee management
+ */
 @Repository
 public class EmployeeDAO implements IEmployeeDAO {
 

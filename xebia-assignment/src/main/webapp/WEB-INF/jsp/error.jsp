@@ -5,9 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+
+<style type="text/css">
+	body{
+		background: #08b1a1;
+		font-family: arial;
+		color:white;
+		
+	}
+
+</style>
+
 </head>
 <body>
-${status}
-${message}
+<center style="margin-top: 20%;">
+<h1>${status}</h1>
+<h2>Sorry, unable not serve what you are looking for.</h2>
+</center>
 </body>
 </html>

@@ -30,7 +30,7 @@ public class Employee implements Comparable<Employee>{
 	@Size(min=3, max=50, message="size must be between 3 and 50")
 	private String lastName;
 	
-	@NotNull(message="gender field is mandatory")
+	@NotNull(message="gender field is missing or invalid")
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
@@ -40,10 +40,13 @@ public class Employee implements Comparable<Employee>{
 	private Date dob;
 	
 	
-	@NotNull(message="department field is mandatory")
+	@NotNull(message="department field is missing or invalid")
 	@Enumerated(EnumType.STRING)
 	private Department department;
 	
+	public Employee() {
+		
+	}
 	
 	public Employee(String firstName, String lastName, Gender gender, Date dob, Department department) {
 		this.firstName = firstName;
