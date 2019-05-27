@@ -12,5 +12,8 @@ Simple web application demonstrating employee registration and employee listing.
 ### Installation
   - Clone this repository
   - Open command prompt, Change directory to "xebia-assignment"
-  - run with ```mvn spring-boot:run``` command
+  - run with `mvn test spring-boot:run` command
+  - On successfull run, you can access the application with http://localhost:8080/xebia-assignment/employee/
+  
+
 
